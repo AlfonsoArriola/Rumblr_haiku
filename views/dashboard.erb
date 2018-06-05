@@ -1,0 +1,60 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title> The Dashboard </title>
+</head>
+<body>
+	<div class="the_dash">
+		<div class="login_signup">
+				<ul>
+					<li><a href="/profile">Profile</a></li>
+					<li>or</li>
+					<li><a href="/logout">Log Out</a></li>
+			    </ul>	
+		</div>
+	<div class="content">
+	    <h2> Welcome Home, <%= @user.first_name %>, let's Begin. </h2>
+	          <% if @poems.empty? %>
+	               <h2> No New posts: <br> 
+	               	  Let's fix <i><a href="/haiku/new"><u>that</u></a></i>."
+	               </h2>
+
+	          <% else %>
+
+	               <h3> 
+	               	  <i>Behold!</i> Your latest feats:
+	               </h3>
+	               <br>
+	                     <% @num = 1 %>
+	                          <% @poems.each do |poem| %>
+								    <ul class="list_of_poems">
+										 <li> 
+										 	<u> 
+										 	     <div class="poem_entry">
+										 		 <%= @num %>) <%= poem.title %>	  	
+										 		 </div>	
+										     </u>  
+										    <div>
+											    <a class="edit_or_delete_button" href="/haiku/edit/<%= poem.id %>">
+											 	Edit </a>
+			         
+										    </div>
+										   </li>
+									 </ul>	
+							 <% @num += 1 %>
+							   <% if @num > 20 %>
+							        <% break %>
+						       <% end %>
+						<% end %>
+
+						<div class="new_entry">
+
+						   <a href="/haiku/new"> <i>Make a New haiku</i></a>
+						</div>   
+	          <% end %>
+	</div>
+  </div>
+</body>
+</html>
+
+

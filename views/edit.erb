@@ -1,0 +1,42 @@
+
+
+                   <div class="login_signup">
+							<ul>
+								<li><a href="/">Home</a></li>
+								<li>or</li>
+								<li><a href="/logout">Log Out</a></li>
+						    </ul>	
+					</div>
+
+
+
+<div class="content">
+
+
+
+		            <h2> Edit Your Poem</h2>
+  
+
+		<form action="/haiku/update/<%= @poems.id %>" method="POST">
+			
+					Poem Title: <br>
+
+		<input type="text" name="title" class="form-control" value="<%= @poems.title  %>">
+		 <br> <br>
+
+				   The Poem, itself: <br>
+
+					<textarea name="poetry" cols="30" rows="10" class="form-control" ><%= @poems.poem %> </textarea>
+			
+		
+					<input class="button" type="submit" value="submit. please." >
+					<br> <br>
+					" Or just delete it."
+
+					<div>
+						<a  href="/haiku/delete/<%= @poems.id %>" class="edit_or_delete_button" > Begone!</a>
+					</div>
+			
+		</form>
+
+</div>

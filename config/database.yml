@@ -1,0 +1,13 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+  
+development:
+  <<: *defaults
+  database: rumblr2
+
+production:
+  <<: *defaults
+  url: ENV['DATABASE_URL']
