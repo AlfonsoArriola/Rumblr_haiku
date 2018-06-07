@@ -111,12 +111,12 @@ post '/haiku/create' do
    #   end
 # ______________  BASIC POEM ANALYZER  _____________________________
 
- #    user_id = session[:user_id]
-	# poem = Poem.create(
-	# 	title: params[:title],
-	# 	poem: params[:poem],
-	# 	user_id: user_id
-	# 	)
+    user_id = session[:user_id]
+	poem = Poem.create(
+		title: params[:title],
+		poem: params[:poem],
+		user_id: user_id
+		)
 
 	# --------------------------------------------
 	redirect '/dashboard'
