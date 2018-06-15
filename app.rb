@@ -7,10 +7,12 @@ SecureRandom.hex
 set :session_secret, ENV['SEI_SESSION_SECRET']
 enable :sessions
 
+# good job Alfonso. overall code looks clean. minor indentations 
+# but i was able to read/understand everything.
+# the <html>...</html> structure should all be in layout.erb and not repeated on every erb file.
 
 get '/' do
 	erb :index
-	# ,	:layout =>false
 end
 
 
@@ -19,7 +21,7 @@ get('/signup') do
 end
 
 get('/how_to') do
-	erb :how_to ,	:layout =>false
+	erb :how_to , :layout =>false
 end
 
 post('/signup') do
@@ -116,7 +118,7 @@ post '/haiku/create' do
 		title: params[:title],
 		poem: params[:poem],
 		user_id: user_id
-		)
+	)
 
 	# --------------------------------------------
 	redirect '/dashboard'
@@ -125,50 +127,45 @@ end
 get '/haiku/edit/:id' do
 	# @poem = poem.find(params[])
 	user_id = session[:user_id]
-   @user = User.find(user_id)
-   @poems = @user.poems.find(params[:id])
+	@user = User.find(user_id)
+	@poems = @user.poems.find(params[:id])
 	erb :edit
 end
 
 post '/haiku/update/:id' do
-	# posts = track_user_posts.find(params[:id])
-	# posts.update(params)
 	user_id = session[:user_id]
-   @user = User.find(user_id)
-   @poems = @user.poems.find(params[:id])
-   @poems.update(title: params[:title]  , poem:params[:poetry])
+	@user = User.find(user_id)
+	@poems = @user.poems.find(params[:id])
+	@poems.update(title: params[:title]  , poem:params[:poetry])
 
 	redirect '/dashboard'	
 end
 
 get '/haiku/delete/:id'do 
-user_id = session[:user_id]
-   @user = User.find(user_id)
-   @poems = @user.poems.find(params[:id])
-   @poems.destroy()
+	user_id = session[:user_id]
+	@user = User.find(user_id)
+	@poems = @user.poems.find(params[:id])
+	@poems.destroy()
 
-   redirect '/dashboard'	
-
+	redirect '/dashboard'	
 end
 
 get '/profile' do
 	user_id = session[:user_id]
-   @user = User.find(user_id)
-   @poems = @user.poems.order('id DESC')
-   # @poems = Poems.where(user_id: session[:user_id])
+	@user = User.find(user_id)
+	@poems = @user.poems.order('id DESC')
 
 	erb :profile
 end
 
 get '/cancel' do
 	user_id = session[:user_id]
-   @user = User.find(user_id)
-   @user.destroy()
+	@user = User.find(user_id)
+	@user.destroy()
 	redirect '/'
 end
 
 get '/haiku/public_profile/:id' do
-	# @poem = poem.find(params[])
 	user_id = session[:user_id]
     @user = User.find(user_id)
     @poems = @user.poems.find(params[:id])
