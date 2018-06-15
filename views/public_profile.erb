@@ -1,5 +1,6 @@
 <html>
 <head>
+	<!-- the outer skeleton should be placed in layout.erb -->
 	<meta charset="UTF-8">
 	<title> Public Profile</title>
 </head>
@@ -24,19 +25,20 @@
 	               	  Latest Haikus
 	               </h3>
 	               <br>
-	                     <% @num = 1 %>
-	                          <% @poems.each do |poem| %>
+	               		<!-- you can use something here call .each_with_index instead of num -->
+	                     <%# @num = 1 %>
+	                          <% @poems.each_with_index do |poem, index| %>
 								    <ul class="list_of_poems">
 										 <li> 
 										 	<u> 
 										 	     <div class="poem_entry">
-										 		 <%= @num %>) <%= poem.title %>	  	
+										 		 <%= (index+1) %>) <%= poem.title %>	  	
 										 		 </div>	
 										     </u>  
 										   </li>
 									 </ul>	
-							 <% @num += 1 %>
-							   <% if @num > 20 %>
+							 <%# @num += 1 %>
+							   <% if index > 20 %>
 							        <% break %>
 						       <% end %>
 						<% end %> 
